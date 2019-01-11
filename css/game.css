@@ -25,7 +25,7 @@ body {
     position: absolute;
     background: url("../img/galaxy_layer.png") repeat-x;
     height:550px;
-    width:9000px;
+    width:18000px;
     animation-name: scrollGalaxy;
     animation-duration:600s;
     animation-timing-function: linear;
