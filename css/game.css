@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+
+}
+
 .container{
     overflow:hidden;
     height:550px;
@@ -15,15 +20,34 @@
     z-index: -99;
 }
 
-#rock1 {
+.rock {
     position: absolute;
     height: 50px;
     width: 50px;
     background-color: red;
-    left: 50px;
+    right: 0%;
     top: 50px;
     z-index: 1;
-    
+    animation-name: driftRock;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.rock2 {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: lightblue;
+    right: 0%;
+    top: 200px;
+    z-index: 1;
+    animation-name: driftRock;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
 @keyframes scrollBg {
@@ -32,5 +56,14 @@
     }
     to {
         transform : translate(-3000px,0);
+    }
+}
+
+@keyframes driftRock {
+    0% {
+        right: 0%;
+    }
+    100% {
+        right: 100%;
     }
 }
