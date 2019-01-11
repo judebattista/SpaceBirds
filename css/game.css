@@ -9,15 +9,28 @@ body {
     width:100%;
     z-index: 0;
 }
-.sliding-background{
+.sliding-background {
+    position: absolute;
     background: url("../img/main_bg.png") repeat-x;
     height:550px;
     width:9000px;
     animation-name: scrollBg;
-    animation-duration:60s;
+    animation-duration:600s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     z-index: -99;
+}
+
+.sliding-galaxies {
+    position: absolute;
+    background: url("../img/galaxy_layer.png") repeat-x;
+    height:550px;
+    width:9000px;
+    animation-name: scrollGalaxy;
+    animation-duration:600s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index: -98;
 }
 
 .rock {
@@ -35,27 +48,21 @@ body {
     animation-fill-mode: forwards;
 }
 
-.rock2 {
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background-color: lightblue;
-    right: 0%;
-    top: 200px;
-    z-index: 1;
-    animation-name: driftRock;
-    animation-duration: 3s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-}
-
 @keyframes scrollBg {
     from {
         transform : translate(0,0);
     }
     to {
-        transform : translate(-3000px,0);
+        transform : translate(-30000px,0);
+    }
+}
+
+@keyframes scrollGalaxy {
+    from {
+        transform : translate(0,0);
+    }
+    to {
+        transform : translate(-60000px,0);
     }
 }
 

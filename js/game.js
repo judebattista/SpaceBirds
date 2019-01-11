@@ -5,6 +5,12 @@ var gameState =
 
 $(document).ready(
     function () {
+        //Add the galaxy backdrop
+        var $backgroundMom = $("#gameBox");
+        var $galaxyGraphics = $("<div>");
+        $galaxyGraphics.attr("class", "sliding-galaxies");
+        $galaxyGraphics.appendTo($backgroundMom);
+
         //The number of rocks is determined by the level
         var numRocks = gameState.level;
         var $rockMom =  $("#gameBox");
