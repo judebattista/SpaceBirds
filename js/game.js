@@ -5,6 +5,8 @@ var gameState =
 
 $(document).ready(
     function () {
+        var runLoop = setInterval(gameLoop, 2000);
+
         //Add the galaxy backdrop
         var $backgroundMom = $("#gameBox");
         var $galaxyGraphics = $("<div>");
@@ -27,6 +29,31 @@ $(document).ready(
         }
     }
 );
+
+function gameLoop() {
+    console.log("Game loop executing");
+    generateAsteroids();
+    detectCollision();
+    updateBird();
+    updateObstacle();
+
+}
+function generateAsteroids() {
+    console.log("Generating asteroids");
+
+}
+
+function detectCollision() {
+    console.log("Detecting collisions");
+}
+
+function updateBird(){
+    console.log("Updating bird");
+}
+
+function updateObstacle(){
+    console.log("Updating obstacle");
+}
 
 
 
