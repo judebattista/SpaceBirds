@@ -7,8 +7,7 @@ body {
 }
 
 h1 {
-  font-family: 'Lobster', cursive;
-  font-size: 48px;
+  font-size: 2em;
 }
 
 h2 {
@@ -71,12 +70,14 @@ h2 {
 }
 
 .bird {
-  z-index: 3;
-  top: 20em;
-  left: 10em;
-  position: fixed;
-  left: 50px;
-  top: 300px;
+  z-index: 100;
+  background-image: url("../img/bird_flap.gif");
+  height: 11rem;
+  width: 8rem;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width:50%;
 }
 
 .sliding-bg {
@@ -106,7 +107,6 @@ h2 {
   position: fixed;
   margin: 0px;
   background: url("../img/asteroid_layer.png") repeat-x;
-  height: 500px;
   height: 100%;
   width: 6060px;
   animation: slide2 30s linear infinite;
@@ -126,7 +126,7 @@ h2 {
   position: fixed;
   margin: 0px;
   background: url("../img/galaxy_layer.png") repeat-x;
-  height: 500px;
+  height: 100%;
   width: 9090px;
   animation: slide2 60s linear infinite;
 }
