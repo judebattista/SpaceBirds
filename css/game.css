@@ -48,6 +48,16 @@ body {
     animation-fill-mode: forwards;
 }
 
+.bird {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    left: 50px;
+    top: 50px;
+    z-index: 1;
+}
+
 @keyframes scrollBg {
     from {
         transform : translate(0,0);
