@@ -35,9 +35,9 @@ body {
 
 .rock {
     position: absolute;
-    height: 50px;
-    width: 50px;
-    background-color: red;
+    height: 80px;
+    width: 80px; 
+    background-image: url("../img/asteroid.png");  
     right: 0%;
     top: 50px;
     z-index: 1;
@@ -73,4 +73,11 @@ body {
     100% {
         right: 100%;
     }
+}
+.asteroid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+    z-index:3;
 }
