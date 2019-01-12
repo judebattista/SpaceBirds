@@ -1,6 +1,6 @@
 var gameState =
 {
-    level:10,
+    level:5,
 };
 
 $(document).ready(
