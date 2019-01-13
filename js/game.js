@@ -130,6 +130,13 @@ function destroyInactiveAsteroids() {
             this.remove();
         }
     });
+    $(".rock").each( function() { /* Destroy stopped asteroids */
+        $this = $(this);
+        var rockStill = $this.css('animation-name');
+        if (rockStill == 'none') {
+            this.remove();
+        }
+    });
 }
 
 function updateBird() {
