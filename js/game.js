@@ -86,12 +86,13 @@ function generateAsteroids() {
         var $rockMom = $("#gameBox");
         var $rock;
         var portHeight = $rockMom.height();
+        var portTop = $rockMom.position().top;
         var rockVerticalGap = portHeight / numRocks;
         for (var ndx = 0; ndx < numRocks; ndx++) {
             $rock = $("<div>");
             $rock.attr("id", "rock" + ndx);
             $rock.attr("class", "rock");
-            $rock.css("top", ndx * rockVerticalGap);
+            $rock.css("top", ndx * rockVerticalGap + portTop);
             $rock.css("animation-duration",  Math.random() * 5 + 1 + "s");
             $rockMom.append($rock);
         }
