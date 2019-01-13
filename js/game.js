@@ -1,5 +1,5 @@
 var obstacles = [];
-var loopDelay = 8;
+var loopDelay = 16;
 var rockRadius = 25;
 
 var obstacle = {
@@ -66,8 +66,8 @@ function gameLoop() {
 }
 
 function generateNest() { /* added from nest.js */
-    if (gameState.timer >= 1875) {
-
+    if (gameState.timer == 1875) {
+        
         var $nestMom = $("#gameBox");
         var $nest;
         $nest = $("<div>");

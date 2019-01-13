@@ -113,10 +113,11 @@ h2 {
 
 .nest { /* added from nest.css */
   position: absolute;
-  height: 50px;
-  width: 50px;
- /* background: url("../img/nest_hover.gif");*/
-  background-color: blue;
+  height: 11rem;
+  width: 8rem;
+  background: url("../img/nest_hover.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
   right: 20%;
   left: 50px;
   top: 50px;
@@ -132,7 +133,9 @@ h2 {
   position: absolute;
   height: 50px;
   width: 50px;
-  background-color: red;
+  background: url("../img/astroid_lone.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   right: 0%;
   top: 50px;
   z-index: 1;
