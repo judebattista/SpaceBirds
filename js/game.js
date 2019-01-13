@@ -38,7 +38,7 @@ var bird = {
 $(document).ready(
     function () {
         var runLoop = setInterval(gameLoop, loopDelay);
-        //make dummy bird
+        //make bird element
         var $birdMom = $("#gameBox");
         $bird = $("<div>");
         $bird.attr("id", "bird");
@@ -49,12 +49,10 @@ $(document).ready(
 
 
         //Set static bird information
-        var birdHeightString = $bird.css("height");
-        bird.height = Number(birdHeightString.substr(0, birdHeightString.length - 2));
-        var birdWidthString = $bird.css("width");
-        bird.width = Number(birdWidthString.substr(0, birdWidthString.length - 2));
+        bird.height = $bird.height();
+        bird.width = $bird.width();
         bird.radius = Math.min(bird.height, bird.width) / 2;
-        
+
         //Add the galaxy backdrop
         var $backgroundMom = $("#gameBox");
         var $galaxyGraphics = $("<div>");
@@ -115,10 +113,10 @@ function detectCollision() {
 function doesRockOverlapBird() {
     //console.log("Checking rock vs bird.");
     var rockPos = $(this).position();
-    var rockTop = rockPos.top;
     var rockLeft = rockPos.left;
 
-    /*
+
+    var rockTop = rockPos.top;
     var rockCenterX = rockLeft + rockRadius;
     var rockCenterY = rockTop + rockRadius;
     var $bird = $("#bird");
@@ -129,12 +127,12 @@ function doesRockOverlapBird() {
     var birdCenterY = birdTop + bird.height / 2;
 
     var collide = overlapRadial(birdCenterX, birdCenterY, rockCenterX, rockCenterY, bird.radius, rockRadius);
-    */
-    $thisBird = $("#bird");
-    var collide = overlapBox($thisBird, $this);
+
+    //$thisBird = $("#bird");
+    //var collide = overlapBox($thisBird, $this);
     if (collide) {
-        $this.css("animation-name", "none");
-        $this.css("left", rockLeft);
+        $(this).css("animation-name", "none");
+        $(this).css("left", rockLeft);
     }
 }
 
@@ -161,11 +159,11 @@ function overlapRadial(x1, y1, x2, y2, radius1, radius2) {
     var distance = Math.sqrt(xdistSquared + ydistSquared);
     var sumRad = radius1 + radius2;
     //console.log("y1=" + y1 + " y2=" + y2 + " xdist=" + xdist + " ydist=" + ydist + " xSquared=" + xdistSquared + " ySquared=" + ydistSquared + " calculated distance: " + distance + " radius " + sumRad);
-    /*
+    
     if (distance < sumRad) {
         console.log("COLLISION! Distance: " + distance + " radius: " + sumRad);
     }
-    */
+    
     return distance < sumRad;
 }
 
