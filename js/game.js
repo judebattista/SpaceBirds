@@ -108,10 +108,10 @@ function doesRockOverlapBird() {
     console.log("Checking rock vs bird.");
     var $this = $(this);
     var rockPos = $this.position();
-    var rockTop = rockPos.top;
+    //var rockTop = rockPos.top;
     var rockLeft = rockPos.left;
-    var rockCenterX = rockLeft + rockRadius;
-    var rockCenterY = rockTop + rockRadius;
+    // var rockCenterX = rockLeft + rockRadius;
+    //var rockCenterY = rockTop + rockRadius;
     //var collide = overlap(bird.centerx, bird.centery, rockCenterX, rockCenterY, bird.radius, rockRadius);
     
     $thisBird = $(".bird");
