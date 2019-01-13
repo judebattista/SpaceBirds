@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+
+}
+
+.container{
+    overflow:hidden;
+    height:550px;
+    width:100%;
+    z-index: 0;
+}
+
+.sliding-background {
+    position: absolute;
+    background: url("../img/main_bg.png") repeat-x;
+    height:550px;
+    width:9000px;
+    animation-name: scrollBg;
+    animation-duration:600s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index: -99;
+}
+
+.sliding-galaxies {
+    position: absolute;
+    background: url("../img/galaxy_layer.png") repeat-x;
+    height:550px;
+    width:18000px;
+    animation-name: scrollGalaxy;
+    animation-duration:600s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index: -98;
+}
+
+.rock {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    right: 20%;
+    top: 50px;
+    z-index: 1;
+    animation-name: driftRock;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.nest {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+   /* background: url("../img/nest_hover.gif");*/
+    background-color: blue;
+    right: 20%;
+    left: 50px;
+    top: 50px;
+    z-index: 1;
+    animation-name: driftNest;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.bird {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    left: 50px;
+    top: 50px;
+    z-index: 1;
+}
+
+@keyframes scrollBg {
+    from {
+        transform : translate(0,0);
+    }
+    to {
+        transform : translate(-30000px,0);
+    }
+}
+
+@keyframes scrollGalaxy {
+    from {
+        transform : translate(0,0);
+    }
+    to {
+        transform : translate(-60000px,0);
+    }
+}
+
+@keyframes driftRock {
+    0% {
+        right: 0%;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+@keyframes driftNest {
+    0% {
+        right: 0%;
+    }
+    100% {
+        right: 100%;
+    }
+}
