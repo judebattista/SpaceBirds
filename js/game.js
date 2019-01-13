@@ -1,5 +1,6 @@
 var obstacles = [];
-var loopDelay = 500;
+var loopDelay = 8;
+var rockRadius = 25;
 
 var obstacle = {
     radius: 0,
@@ -20,7 +21,7 @@ var gameState =
 var bird = {
     centerx : 100,
     centery : 100,
-    radius: 10
+    radius: 25
 }
 
 $(document).ready(
@@ -48,6 +49,7 @@ $(document).ready(
 function gameLoop() {
     console.log("Game loop executing");
     generateAsteroids();
+    destroyInactiveAsteroids();
     detectCollision();
     updateBird();
     updateObstacle();
@@ -56,7 +58,7 @@ function gameLoop() {
 
 function generateAsteroids() {
     //console.log("Generating asteroids");
-    if (gameState.timer % 300 === 0) {
+    if (gameState.timer % 3000 === 0) {
         var numRocks = gameState.level;
         var $rockMom = $("#gameBox");
         var $rock;
@@ -69,19 +71,13 @@ function generateAsteroids() {
             speed: 0,
             active: true,
         };
-        var rockPosition;
         for (var ndx = 0; ndx < numRocks; ndx++) {
             $rock = $("<div>");
             $rock.attr("id", "rock" + ndx);
             $rock.attr("class", "rock");
             $rock.css("top", ndx * rockVerticalGap);
-            rockPosition = $rock.position();
-            newRock.centerx = rockPosition.left + newRock.radius;
-            newRock.centery = rockPosition.top + newRock.radius;
-            newRock.speed = Math.random() * 10 + 1;
-            $rock.css("animation-duration",  newRock.speed + "s");
+            $rock.css("animation-duration",  Math.random() * 5 + 1 + "s");
             $rockMom.append($rock);
-            obstacles.push(newRock);
         }
     }
 }
@@ -93,7 +89,6 @@ function detectCollision() {
 
 function doesRockOverlapBird() {
     console.log("Checking rock vs bird.");
-    var rockRadius = 25;
     var rockPos = $(this).position();
     var rockTop = rockPos.top;
     var rockLeft = rockPos.left;
@@ -101,9 +96,21 @@ function doesRockOverlapBird() {
     var rockCenterY = rockTop + rockRadius;
     var collide = overlap(bird.centerx, bird.centery, rockCenterX, rockCenterY, bird.radius, rockRadius);
     if (collide) {
-        alert("Rock hit bird at " + rockCenterX + " by " + rockCenterY);
+        //alert("Rock hit bird at " + rockCenterX + " by " + rockCenterY);
     }
 }
+
+function destroyInactiveAsteroids() {
+    $(".rock").each( function() {
+        $this = $(this);
+        var rockPos = $this.position();
+        var rockLeft = rockPos.left;
+        if (rockLeft + rockRadius + rockRadius <= 0) {
+            this.remove();
+        }
+    });
+}
+
 
 function updateBird() {
     //console.log("Updating bird");
@@ -117,7 +124,10 @@ function overlap(x1, y1, x2, y2, radius1, radius2) {
     var distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
     var sumRad = radius1 + radius2;
     console.log("calculated distance: " + distance + " radius " + sumRad);
-    return distance < (radius1 + radius2);
+    if (distance < sumRad) {
+        console.log("COLLISION! Distance: " + distance + " radius: " + sumRad);
+    }
+    return distance < sumRad;
 
 }
 
