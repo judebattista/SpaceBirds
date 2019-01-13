@@ -56,7 +56,7 @@ $(document).ready(
 );
 
 function gameLoop() {
-    console.log("Game loop executing");
+    //onsole.log("Game loop executing");
     generateAsteroids();
     generateNest(); /* added from nest.js */
     destroyInactiveAsteroids();
@@ -105,7 +105,7 @@ function detectCollision() {
 }
 
 function doesRockOverlapBird() {
-    console.log("Checking rock vs bird.");
+    //console.log("Checking rock vs bird.");
     var $this = $(this);
     var rockPos = $this.position();
     //var rockTop = rockPos.top;
