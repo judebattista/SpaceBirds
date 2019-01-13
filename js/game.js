@@ -1,5 +1,6 @@
 var obstacles = [];
-var loopDelay = 500;
+var loopDelay = 8;
+var rockRadius = 25;
 
 var obstacle = {
     radius: 0,
@@ -20,7 +21,7 @@ var gameState =
 var bird = {
     centerx : 100,
     centery : 100,
-    radius: 10
+    radius: 25
 }
 
 $(document).ready(
@@ -48,76 +49,107 @@ $(document).ready(
 function gameLoop() {
     console.log("Game loop executing");
     generateAsteroids();
+    destroyInactiveAsteroids();
     detectCollision();
     updateBird();
-    updateObstacle();
     gameState.timer++;
 }
 
 function generateAsteroids() {
     //console.log("Generating asteroids");
-    if (gameState.timer % 300 === 0) {
+    if (gameState.timer % 600 === 0) {
         var numRocks = gameState.level;
         var $rockMom = $("#gameBox");
         var $rock;
         var portHeight = $rockMom.height();
         var rockVerticalGap = portHeight / numRocks;
-        var newRock = {
-            radius: 25,
-            centerx: 0,
-            centery: 0,
-            speed: 0,
-            active: true,
-        };
-        var rockPosition;
         for (var ndx = 0; ndx < numRocks; ndx++) {
             $rock = $("<div>");
             $rock.attr("id", "rock" + ndx);
             $rock.attr("class", "rock");
             $rock.css("top", ndx * rockVerticalGap);
-            rockPosition = $rock.position();
-            newRock.centerx = rockPosition.left + newRock.radius;
-            newRock.centery = rockPosition.top + newRock.radius;
-            newRock.speed = Math.random() * 10 + 1;
-            $rock.css("animation-duration",  newRock.speed + "s");
+            $rock.css("animation-duration",  Math.random() * 5 + 1 + "s");
             $rockMom.append($rock);
-            obstacles.push(newRock);
         }
     }
 }
 
 function detectCollision() {
-    console.log("Detecting collisions");
+    //console.log("Detecting collisions");
     $(".rock").each(doesRockOverlapBird);
 }
 
 function doesRockOverlapBird() {
     console.log("Checking rock vs bird.");
-    var rockRadius = 25;
-    var rockPos = $(this).position();
+    var $this = $(this);
+    var rockPos = $this.position();
     var rockTop = rockPos.top;
     var rockLeft = rockPos.left;
     var rockCenterX = rockLeft + rockRadius;
     var rockCenterY = rockTop + rockRadius;
-    var collide = overlap(bird.centerx, bird.centery, rockCenterX, rockCenterY, bird.radius, rockRadius);
+    //var collide = overlap(bird.centerx, bird.centery, rockCenterX, rockCenterY, bird.radius, rockRadius);
+    
+    $thisBird = $(".bird");
+    var collide = overlapBox($thisBird, $this);
     if (collide) {
-        alert("Rock hit bird at " + rockCenterX + " by " + rockCenterY);
+        $this.css("animation-name", "none");
+        $this.css("left", rockLeft);
     }
 }
+
+function destroyInactiveAsteroids() {
+    $(".rock").each( function() {
+        $this = $(this);
+        var rockPos = $this.position();
+        var rockLeft = rockPos.left;
+        if (rockLeft + rockRadius + rockRadius <= 0) {
+            this.remove();
+        }
+    });
+}
+
 
 function updateBird() {
     //console.log("Updating bird");
 }
 
-function updateObstacle() {
-    //console.log("Updating obstacle");
+function overlap(x1, y1, x2, y2, radius1, radius2) {
+    var xdist = x1 - x2;
+    var ydist = y1 - y2;
+    var xdistSquared = xdist * xdist;
+    var ydistSquared = ydist * ydist;
+    var distance = Math.sqrt(xdistSquared + ydistSquared);
+    var sumRad = radius1 + radius2;
+    //console.log("calculated distance: " + distance + " radius " + sumRad);
+    if (distance < sumRad) {
+        //console.log("COLLISION! Distance: " + distance + " radius: " + sumRad);
+    }
+    return distance < sumRad;
 }
 
-function overlap(x1, y1, x2, y2, radius1, radius2) {
-    var distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-    var sumRad = radius1 + radius2;
-    console.log("calculated distance: " + distance + " radius " + sumRad);
-    return distance < (radius1 + radius2);
+function overlapBox ($bird, $rock ) {
+    //Check to see if 1 hit the bottom of 2
+    birdTop = $bird.position().top;
+    birdBottom = birdTop + $bird.height();
+    birdLeft = $bird.position().left;
+    birdRight = birdLeft + $bird.width();
+
+    rockTop = $rock.position().top;
+    rockBottom = rockTop + $rock.height();
+    rockLeft = $rock.position().left;
+    rockRight = rockLeft + $rock.width();
+
+    var collision = true;
+    if ((birdBottom < rockTop) || 
+        (birdTop > rockBottom) || 
+        (birdLeft > rockRight) || 
+        (birdLeft < rockLeft)) {
+        collision = false;
+    } else {
+        //console.log("crash!")
+    }
+    return collision;
+
 
 }
 
