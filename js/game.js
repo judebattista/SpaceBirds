@@ -10,11 +10,20 @@ var obstacle = {
     active: 0,
 };
 
+var nest = { /* added from nest.js */
+    radius: 10,
+    centerx : 200,
+    centery : 200,
+    speed: 0,
+    active: 0,
+};
+
 var gameState =
 {
     level: 5,
     timer: 0, /*loop iterations*/
     activeObst: 0,
+    activeNest:0, /* added from nest.js */
 };
 
 //Distances in pixels
@@ -49,10 +58,25 @@ $(document).ready(
 function gameLoop() {
     console.log("Game loop executing");
     generateAsteroids();
+    generateNest(); /* added from nest.js */
     destroyInactiveAsteroids();
     detectCollision();
     updateBird();
     gameState.timer++;
+}
+
+function generateNest() { /* added from nest.js */
+    if (gameState.timer >= 1875) {
+
+        var $nestMom = $("#gameBox");
+        var $nest;
+        $nest = $("<div>");
+        $nest.attr("id", "nest");
+        $nest.attr("class", "nest");
+        $nest.css("top", nest.centery);
+        $nest.css("left", nest.centerx);
+        $nestMom.append($nest);
+    }
 }
 
 function generateAsteroids() {
@@ -107,7 +131,6 @@ function destroyInactiveAsteroids() {
         }
     });
 }
-
 
 function updateBird() {
     //console.log("Updating bird");

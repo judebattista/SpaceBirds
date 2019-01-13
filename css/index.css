@@ -80,67 +80,102 @@ h2 {
   max-width:50%;
 }
 
-.sliding-bg {
-  z-index: 1;
-  position: fixed;
-  margin: 0;
+.container{
+  overflow:hidden;
+  height:550px;
+  width:100%;
+  z-index: 0;
+}
+
+.sliding-background {
+  position: absolute;
   background: url("../img/main_bg.png") repeat-x;
-  height: 500px;
-  width: 13635px;
-  animation: slide 90s linear infinite;
-  width: 9000px;
-  height: 74%;
-  animation: slide 60s linear infinite;
+  height:550px;
+  width:9000px;
+  animation-name: scrollBg;
+  animation-duration:600s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: -99;
 }
 
-@keyframes slide{
-  0%{
-    transform: translate3d(0, 0, 0);
-  }
-  100%{
-    transform: translate3d(-3030px, 0, 0);
-  }
-}
-
-.sliding-asteroid {
-  z-index: 3;
-  position: fixed;
-  margin: 0px;
-  background: url("../img/asteroid_layer.png") repeat-x;
-  height: 100%;
-  width: 6060px;
-  animation: slide2 30s linear infinite;
-}
-
-@keyframes slide2{
-  0%{
-    transform: translate3d(0, 0, 0);
-  }
-  100%{
-    transform: translate3d(-3030px, 0, 0);
-  }
-}
-
-.sliding-galaxy {
-  z-index: 2;
-  position: fixed;
-  margin: 0px;
+.sliding-galaxies {
+  position: absolute;
   background: url("../img/galaxy_layer.png") repeat-x;
-  height: 100%;
-  width: 9090px;
-  animation: slide2 60s linear infinite;
+  height:550px;
+  width:18000px;
+  animation-name: scrollGalaxy;
+  animation-duration:600s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: -98;
 }
 
-@keyframes slide2{
-  0%{
-    transform: translate3d(0, 0, 0);
+.nest { /* added from nest.css */
+  position: absolute;
+  height: 50px;
+  width: 50px;
+ /* background: url("../img/nest_hover.gif");*/
+  background-color: blue;
+  right: 20%;
+  left: 50px;
+  top: 50px;
+  z-index: 1;
+  animation-name: driftNest;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.rock {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  right: 0%;
+  top: 50px;
+  z-index: 1;
+  animation-name: driftRock;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes scrollBg {
+  from {
+      transform : translate(0,0);
   }
-  100%{
-    transform: translate3d(-3030px, 0, 0);
+  to {
+      transform : translate(-30000px,0);
   }
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+@keyframes scrollGalaxy {
+  from {
+      transform : translate(0,0);
+  }
+  to {
+      transform : translate(-60000px,0);
+  }
 }
+
+@keyframes driftRock {
+  0% {
+      right: 0%;
+  }
+  100% {
+      right: 100%;
+  }
+}
+
+@keyframes driftNest { /* added from nest.css */
+  0% {
+      right: 0%;
+  }
+  100% {
+      right: 100%;
+  }
+}
+
