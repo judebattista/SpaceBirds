@@ -106,6 +106,9 @@ function generateAsteroids() {
 function detectCollision() {
     //console.log("Detecting collisions");
     $(".rock").each(doesRockOverlapBird);
+    if (gameState.timer >= gameState.levelEnd){
+        hasBirdReachedNest();
+    }
 }
 
 function doesRockOverlapBird() {
@@ -131,6 +134,25 @@ function doesRockOverlapBird() {
     if (collide) {
         $(this).css("animation-name", "none");
         $(this).css("left", rockLeft);
+    }
+}
+
+function hasBirdReachedNest() {
+    console.log("Bird has reached nest.");
+
+    var $nest = $("#nest");
+    var nestX = $nest.position().left;
+    var nestWidth = $nest.width();
+    var nestCenter = nestX + (nestWidth/2);
+
+    var $bird = $("#bird");
+    var birdX = $bird.position().left;
+    var birdWidth = $bird.width();
+    var  birdCenter =  birdX + ( birdWidth/2);
+
+    if(birdCenter >= nestCenter){
+        /* win */
+        alert("Victory!!");
     }
 }
 
