@@ -33,8 +33,8 @@ var bird = {
     height: 0,
     radius: 0,
     width: 0,
-    healthMax: 1,
-    healthCurrent: 1,
+    healthMax: 2,
+    healthCurrent: 2,
 }
 
 $(document).ready(
@@ -170,7 +170,7 @@ function destroyInactiveAsteroids() {
 
 function updateBird() {
     if (bird.healthCurrent <= 0){
-        /*alert("death");*/
+        alert("death");
     }
     var $bird = $("#bird");
 }
