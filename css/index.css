@@ -69,6 +69,40 @@ h2 {
   background-color: #9740F9;
 }
 
+.splashscreen {
+  font-family: 'Raleway', sans-serif;
+  background-color: rgba(255, 255, 255, .7);
+  overflow: hidden;
+  height:550px;
+  width:100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.splashtext {
+  padding-bottom: 2rem
+}
+
+.startbutton {
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  color: #270986;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  padding: 30px 30px;
+  background-color: #F9519A;
+  width: 10%;
+}
+
+.startbutton:hover {
+  cursor: pointer;
+  color: #D9C2C2;
+
+}
+
 .bird {
   z-index: 100;
   background-image: url("../img/bird_flap.gif");
