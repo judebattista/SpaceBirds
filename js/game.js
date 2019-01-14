@@ -31,7 +31,9 @@ var gameState =
 var bird = {
     height: 0,
     radius: 0,
-    width: 0
+    width: 0,
+    healthMax: 1,
+    healthCurrent: 1,
 }
 
 $(document).ready(
@@ -132,8 +134,8 @@ function doesRockOverlapBird() {
     //$thisBird = $("#bird");
     //var collide = overlapBox($thisBird, $this);
     if (collide) {
-        $(this).css("animation-name", "none");
-        $(this).css("left", rockLeft);
+        $(this).remove();
+        bird.healthCurrent--; 
     }
 }
 
@@ -165,17 +167,13 @@ function destroyInactiveAsteroids() {
             this.remove();
         }
     });
-    $(".rock").each( function() { /* Destroy stopped asteroids */
-        $this = $(this);
-        var rockStill = $this.css('animation-name');
-        if (rockStill == 'none') {
-            this.remove();
-        }
-    });
 }
 
 function updateBird() {
     //console.log("Updating bird");
+    if (bird.healthCurrent == 0){
+        alert("death");
+    }
 }
 
 function overlapRadial(x1, y1, x2, y2, radius1, radius2) {
