@@ -118,13 +118,11 @@ h2 {
   background: url("../img/nest_hover.gif");
   background-size: contain;
   background-repeat: no-repeat;
-  right: 20%;
-  left: 50px;
-  top: 50px;
-  z-index: 1;
+  right: -20%;
+  z-index: 99;
   animation-name: driftNest;
   animation-duration: 5s;
-  animation-timing-function: linear;
+  animation-timing-function: ease-out;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
@@ -175,10 +173,10 @@ h2 {
 
 @keyframes driftNest { /* added from nest.css */
   0% {
-      right: 0%;
+      right: -20%;
   }
   100% {
-      right: 100%;
+      right: 25%;
   }
 }
 

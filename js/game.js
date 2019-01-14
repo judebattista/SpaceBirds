@@ -13,8 +13,6 @@ var obstacle = {
 
 var nest = { /* added from nest.js */
     radius: 10,
-    centerx : 200,
-    centery : 200,
     speed: 0,
     active: 0,
 };
@@ -25,6 +23,7 @@ var gameState =
     timer: 0, /*loop iterations*/
     activeObst: 0,
     activeNest:0, /* added from nest.js */
+    levelEnd: 105,
 };
 
 //Distances in pixels
@@ -72,15 +71,14 @@ function gameLoop() {
 }
 
 function generateNest() { /* added from nest.js */
-    if (gameState.timer == 1875) {
+    if (gameState.timer == gameState.levelEnd) {
         
         var $nestMom = $("#gameBox");
         var $nest;
         $nest = $("<div>");
         $nest.attr("id", "nest");
         $nest.attr("class", "nest");
-        $nest.css("top", nest.centery);
-        $nest.css("left", nest.centerx);
+        $nest.css("top",  $nestMom.position().top + 5);
         $nestMom.append($nest);
     }
 }
