@@ -172,6 +172,7 @@ function updateBird() {
     if (bird.healthCurrent <= 0){
         /*alert("death");*/
     }
+    var $bird = $("#bird");
 }
 
 function overlapRadial(x1, y1, x2, y2, radius1, radius2) {
@@ -217,7 +218,11 @@ function overlapBox ($bird, $rock ) {
 function hitBird (damage){
     bird.healthCurrent -= damage;
     var $bird = $("#bird");
-    $bird.css("background-image",  'url("img/bird_flapinv.gif")');
+    $bird.css("animation-name",  "birdHit");
+    window.setTimeout(function(){
+        $bird.css("animation-name",  "none");
+    }, 1000);
+    
 }
 
 

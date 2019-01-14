@@ -78,6 +78,10 @@ h2 {
   background-size: contain;
   background-repeat: no-repeat;
   max-width:50%;
+  animation-name: none;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
 }
 
 .container{
@@ -180,4 +184,15 @@ h2 {
   }
 }
 
+@keyframes birdHit {
+  0% {
+    background-image: url("../img/bird_flap.gif");
+  }
+  50% {
+    background-image: url("../img/bird_flapinv.gif");
+  }
+  100%{
+    background-image: url("../img/bird_flap.gif");
+  }
+}
 
