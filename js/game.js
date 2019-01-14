@@ -1,6 +1,7 @@
 var obstacles = [];
 var loopDelay = 16;
 var rockRadius = 25;
+var rockDamage = 1;
 var baseFontSize = $("body").css("font-size");
 
 var obstacle = {
@@ -118,7 +119,6 @@ function doesRockOverlapBird() {
     var rockPos = $(this).position();
     var rockLeft = rockPos.left;
 
-
     var rockTop = rockPos.top;
     var rockCenterX = rockLeft + rockRadius;
     var rockCenterY = rockTop + rockRadius;
@@ -130,12 +130,11 @@ function doesRockOverlapBird() {
     var birdCenterY = birdTop + bird.height / 2;
 
     var collide = overlapRadial(birdCenterX, birdCenterY, rockCenterX, rockCenterY, bird.radius, rockRadius);
-
     //$thisBird = $("#bird");
     //var collide = overlapBox($thisBird, $this);
     if (collide) {
         $(this).remove();
-        bird.healthCurrent--; 
+        hitBird(rockDamage);
     }
 }
 
@@ -170,9 +169,8 @@ function destroyInactiveAsteroids() {
 }
 
 function updateBird() {
-    //console.log("Updating bird");
-    if (bird.healthCurrent == 0){
-        alert("death");
+    if (bird.healthCurrent <= 0){
+        /*alert("death");*/
     }
 }
 
@@ -214,8 +212,12 @@ function overlapBox ($bird, $rock ) {
         //console.log("collision!")
     }
     return collision;
+}
 
-
+function hitBird (damage){
+    bird.healthCurrent -= damage;
+    var $bird = $("#bird");
+    $bird.css("background-image",  'url("img/bird_flapinv.gif")');
 }
 
 
