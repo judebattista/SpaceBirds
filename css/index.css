@@ -24,17 +24,6 @@ h2 {
   background-repeat: no-repeat;
   z-index: 1;
 }
-/*
-.birdHit {
-  z-index: 100;
-  background-image: url("../img/bird_flapinj.gif");
-  height: 11rem;
-  width: 8rem;
-  position: absolute;
-  background-size: contain;
-  background-repeat: no-repeat;
-  max-width:50%;
-}*/
 
 .logo {
   position: relative;
@@ -150,7 +139,7 @@ h2 {
   position: absolute;
   background: url("../img/main_bg.png") repeat-x;
   height:550px;
-  width:9000px;
+  width:12000px;
   animation-name: scrollBg;
   animation-duration:600s;
   animation-timing-function: linear;
@@ -162,7 +151,7 @@ h2 {
   position: absolute;
   background: url("../img/galaxy_layer.png") repeat-x;
   height:550px;
-  width:18000px;
+  width:6000px;
   animation-name: scrollGalaxy;
   animation-duration:600s;
   animation-timing-function: linear;
@@ -204,20 +193,14 @@ h2 {
 }
 
 @keyframes scrollBg {
-  from {
-      transform : translate(0,0);
-  }
-  to {
-      transform : translate(-30000px,0);
+  100%{
+    background-position: -6000px;
   }
 }
 
 @keyframes scrollGalaxy {
-  from {
-      transform : translate(0,0);
-  }
-  to {
-      transform : translate(-60000px,0);
+  100%{
+    background-position: -12000px;
   }
 }
 
