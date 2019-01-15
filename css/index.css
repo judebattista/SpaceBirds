@@ -81,6 +81,7 @@ h2 {
 
 .splashscreen {
   font-family: 'Raleway', sans-serif;
+  font-size: 20px;
   background-color: rgba(255, 255, 255, .7);
   overflow: hidden;
   height:550px;
@@ -98,10 +99,10 @@ h2 {
 
 .startbutton {
   font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 20px;
   color: #270986;
   border-radius: 1rem;
   text-align: center;
-  font-size: 1rem;
   padding: 30px 30px;
   background-color: #F9519A;
   width: 10%;
