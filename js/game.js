@@ -1,22 +1,27 @@
-var obstacles = [];
-var loopDelay = 16;
-var rockRadius = 25;
-var rockDamage = 1;
+//////////////////////////////////////
+//  CS301 INTERNET APP DEV JAN 2019
+//  Group Project 3: StarBird Game
+//  Group JAAB (Jude, Alyssa, Apoorv, Becca)
+//  Last edit: 1/14/2019
+//  Purpose: Main code for the game
+//////////////////////////////////////
+
+var obstacles = []; //Array for rock objects(also referred to as asteroids)
+var loopDelay = 16; //Sets game loop to run every 16 miliseconds
+var rockRadius = 25; //Sets a static radius for rock objects
+var rockDamage = 1; //Indicates how much damage rocks deplete when hit
 var baseFontSize = $("body").css("font-size");
 
-var nest = { /* added from nest.js */
-    radius: 10,
-    speed: 0,
-    active: 0,
-};
-
+/*  gameState object keeps information about the current game for 
+    other functions to reference, such as how many asteroids to 
+    generate, when to display the nest or if other objects are active*/
 var gameState =
 {
     level: 5,
     timer: 0, /*loop iterations*/
     active: false,
     activeObst: 0,
-    activeNest: 0, /* added from nest.js */
+    activeNest: 0,
     levelEnd: 105,
 };
 
@@ -30,6 +35,14 @@ var bird = {
     healthCurrent: 2,
 }
 
+var nest = { /* added from nest.js */
+    radius: 10,
+    speed: 0,
+    active: 0,
+};
+
+/*  Displays the start splashscreen with game control instructions and a button to 
+    start the game*/
 $(document).ready(
     function () {
         var startBtn = "Start";
@@ -38,6 +51,8 @@ $(document).ready(
     }
 );
 
+/*  Splashscreen that appears once the game win/lose. Displays overlay, message,
+    and a start button that resets and runs the game*/
 function gamescreen(buttontext, splashtext) {
     var $button = $("<div>");
     $button.attr("id", "startbutton");
@@ -49,7 +64,7 @@ function gamescreen(buttontext, splashtext) {
         gameRun();
         $button.parent().remove();
     });
-    /*var $img = $("<div>");*/
+    /*var $img = $("<div>");*/ //for splashscreen pictures, implement if time 
     var $startscreen = $("<div>");
     $startscreen.attr("id", "splashscreen");
     $startscreen.attr("class", "splashscreen");
@@ -58,6 +73,8 @@ function gamescreen(buttontext, splashtext) {
     $startscreen.appendTo($("#gameBox"));
 }
 
+/*  Destroys objects created after gameRun() is executed.
+    Reusing leftover objects causes problems*/
 function gameReset() {
     var $nest = $("#nest");
     if ($nest) {
@@ -67,6 +84,9 @@ function gameReset() {
     var $bird = $("#bird");
     if ($bird) {
         $bird.css("display", "none");
+        /*When bird is removed here, keyboard input after splashscreen 
+        is displayed as an error, but the bird's repositioning problem
+        after retry/play again is fixed*/
     }
     var $rock = $(".rock");
     if ($rock.length > 0) {
@@ -79,6 +99,9 @@ function gameReset() {
     gameState.timer = 0;
 }
 
+/*  Sets up the bird(player) and background elements for the game.
+    Starts the loop and checks to see if the bird and bg already
+    exist (from retry/play again) before creating new ones*/
 function gameRun() {
     var runLoop = setInterval(gameLoop, loopDelay);
     //make bird element
@@ -112,6 +135,7 @@ function gameRun() {
     gameState.active = true;
 }
 
+/*  Stops the game, calls gameReset() and displays the 'lose' splashscreen */
 function gameLose() {
     gameState.active = false;
     gameReset();
@@ -120,11 +144,12 @@ function gameLose() {
     gamescreen(startBtn, startText);
 }
 
+/*  The heartbeat of the game; gameLoop() calls the necessary functions 
+    to create and destroy objects and keep them updated.*/
 function gameLoop() {
     if (gameState.active) {
-        //console.log("Game loop executing");
         generateAsteroids();
-        generateNest(); /* added from nest.js */
+        generateNest();
         destroyInactiveAsteroids();
         detectCollision();
         updateBird();
@@ -132,9 +157,10 @@ function gameLoop() {
     }
 }
 
-function generateNest() { /* added from nest.js */
+/*  Creates nest(UFO) if the level has run for a certain length
+    of time, as indicated by gameState.levelEnd*/
+function generateNest() {
     if (gameState.timer == gameState.levelEnd) {
-
         var $nestMom = $("#gameBox");
         var $nest;
         $nest = $("<div>");
@@ -145,8 +171,9 @@ function generateNest() { /* added from nest.js */
     }
 }
 
+/*  Creates asteroid divs and assigns them css values and attributes.
+    Also creates numbered Ids for them and gives them a speed value */
 function generateAsteroids() {
-    //console.log("Generating asteroids");
     if (gameState.timer % 600 === 0) {
         var numRocks = gameState.level;
         var $rockMom = $("#gameBox");
@@ -165,16 +192,19 @@ function generateAsteroids() {
     }
 }
 
+/*  Checks for collisions every game loop. Checks all rocks
+s   onscreen and the nest(UFO) if the level's time has run long enough*/
 function detectCollision() {
-    //console.log("Detecting collisions");
     $(".rock").each(doesRockOverlapBird);
     if (gameState.timer >= gameState.levelEnd) {
         hasBirdReachedNest();
     }
 }
 
+/*  Finds the bird's location and the location of every
+    asteroid onscreen and passes them to overlapRadial
+    to check for collisions. */
 function doesRockOverlapBird() {
-    //console.log("Checking rock vs bird.");
     var rockPos = $(this).position();
     var rockLeft = rockPos.left;
 
@@ -189,16 +219,29 @@ function doesRockOverlapBird() {
     var birdCenterY = birdTop + bird.height / 2;
 
     var collide = overlapRadial(birdCenterX, birdCenterY, rockCenterX, rockCenterY, bird.radius, rockRadius);
-    //$thisBird = $("#bird");
-    //var collide = overlapBox($thisBird, $this);
+
+    /*  If overlapRadial indicates a collision, the hitBird function is called,
+        the offending rock's div is removed and the rockSmash div is generated 
+        and subsequently destroyed to briefly display the shattering animation */
     if (collide) {
         $(this).remove();
+        var $rockShatter = $("<div>");
+        $rockShatter.css("top", rockTop);
+        $rockShatter.css("left", rockLeft);
+        $rockShatter.attr("class", "rockSmash");
+        $rockShatter.appendTo($("#gameBox"));
+
+        window.setTimeout(function () {
+            $rockShatter.remove();
+        }, 300);
         hitBird(rockDamage);
     }
 }
 
+/*  Checks the nest(UFO)'s horizontal with bird's and ends the game
+    as a win if the bird has reached the nest. Resets and presents
+    splash screen */
 function hasBirdReachedNest() {
-    console.log("Bird has reached nest.");
 
     var $nest = $("#nest");
     var nestX = $nest.position().left;
@@ -211,7 +254,6 @@ function hasBirdReachedNest() {
     var birdCenter = birdX + (birdWidth / 2);
 
     if (birdCenter >= nestCenter) {
-        /* win */
         gameState.active = false;
         gameReset();
         var startBtn = "Play again (with more asteroids)";
@@ -220,6 +262,8 @@ function hasBirdReachedNest() {
     }
 }
 
+/*  Gets rid of rock divs that have left the screen so they don't
+    accumulate and eat the CPU alive */
 function destroyInactiveAsteroids() {
     $(".rock").each(function () {
         $this = $(this);
@@ -231,12 +275,15 @@ function destroyInactiveAsteroids() {
     });
 }
 
+/* Ends the game if the bird's current health is zero or less */
 function updateBird() {
     if (bird.healthCurrent <= 0) {
         gameLose();
     }
 }
 
+/*  Checks the area of bird and rock to see if they overlap,
+    causing the function to indicate a collision. Radial detection.  */
 function overlapRadial(x1, y1, x2, y2, radius1, radius2) {
     var xdist = x1 - x2;
     var ydist = y1 - y2;
@@ -244,46 +291,21 @@ function overlapRadial(x1, y1, x2, y2, radius1, radius2) {
     var ydistSquared = ydist * ydist;
     var distance = Math.sqrt(xdistSquared + ydistSquared);
     var sumRad = radius1 + radius2;
-    //console.log("y1=" + y1 + " y2=" + y2 + " xdist=" + xdist + " ydist=" + ydist + " xSquared=" + xdistSquared + " ySquared=" + ydistSquared + " calculated distance: " + distance + " radius " + sumRad);
-
-    if (distance < sumRad) {
-        console.log("COLLISION! Distance: " + distance + " radius: " + sumRad);
-    }
-
     return distance < sumRad;
 }
 
-function overlapBox($bird, $rock) {
-    //Check to see if 1 hit the bottom of 2
-    birdTop = $bird.position().top;
-    birdBottom = birdTop + $bird.height();
-    birdLeft = $bird.position().left;
-    birdRight = birdLeft + $bird.width();
-
-    rockTop = $rock.position().top;
-    rockBottom = rockTop + $rock.height();
-    rockLeft = $rock.position().left;
-    rockRight = rockLeft + $rock.width();
-
-    var collision = true;
-    if ((birdBottom < rockTop) ||
-        (birdTop > rockBottom) ||
-        (birdLeft > rockRight) ||
-        (birdLeft < rockLeft)) {
-        collision = false;
-    } else {
-        //console.log("collision!")
-    }
-    return collision;
-}
 
 function hitBird(damage) {
     bird.healthCurrent -= damage;
-    var $bird = $("#bird");
-    $bird.css("animation-name", "birdHit");
+    /*var $bird = $("#bird");
+    $bird.css('background-image', 'url("/img/bird_flapinj.gif");');
     window.setTimeout(function () {
-        $bird.css("animation-name", "none");
-    }, 1000);
+        $bird.css('background-image', 'url("/img/bird_flap.gif");');
+    }, 500);*/
+    document.getElementById("bird").style.backgroundImage = 'url("img/bird_flapinj.gif")';
+    window.setTimeout(function () {
+        document.getElementById("bird").style.backgroundImage = 'url("img/bird_flap.gif")';
+    }, 300);
 }
 
 
