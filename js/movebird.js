@@ -1,3 +1,11 @@
+//////////////////////////////////////
+//  CS301 INTERNET APP DEV JAN 2019
+//  Group Project 3: StarBird Game
+//  Group JAAB (Jude, Alyssa, Apoorv, Becca)
+//  Last edit: 1/14/2019
+//  Purpose: Makes arrowkeys controllers for Bird
+//////////////////////////////////////
+
 /*
 sources: 
 https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-move-an-element-using-left-right-up-and-down-arrow-keys
