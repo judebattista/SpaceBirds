@@ -58,13 +58,12 @@ function gamescreen(buttontext, splashtext) {
     $button.attr("class", "startbutton");
     $button.html(buttontext);
     kd.ENTER.down = function (){
-        $button.css("border","5px solid #8b2fc5");
-        $button.css("color","#D9C2C2;");
         window.setTimeout(function () {
             document.getElementById("startbutton").click();
         }, 300);
     }
     $button.on("click", function () {
+        $button.css("border","5px solid #3847ce");
         gameReset();
         $button.parent().css("display", "none");
         gameRun();
@@ -300,18 +299,12 @@ function overlapRadial(x1, y1, x2, y2, radius1, radius2) {
     return distance < sumRad;
 }
 
-
 function hitBird(damage) {
     bird.healthCurrent -= damage;
-    /*var $bird = $("#bird");
-    $bird.css('background-image', 'url("/img/bird_flapinj.gif");');
-    window.setTimeout(function () {
-        $bird.css('background-image', 'url("/img/bird_flap.gif");');
-    }, 500);*/
     document.getElementById("bird").style.backgroundImage = 'url("img/bird_flapinj.gif")';
     window.setTimeout(function () {
         document.getElementById("bird").style.backgroundImage = 'url("img/bird_flap.gif")';
-    }, 300);
+    }, 400);
 }
 
 

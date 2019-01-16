@@ -7,11 +7,16 @@ body {
 }
 
 header {
+  top: 0;
   margin-left: 50px;
   font-size: 4rem;
   font-family: 'Raleway', sans-serif;
   display: inline-block;
   position: absolute;
+}
+
+h1 {
+  margin:0;
 }
 
 h2 {
@@ -86,17 +91,31 @@ h2 {
   font-size: 1.5rem;
   padding: 1rem 3rem;
   background-color: #F9519A;
-  border: 5px solid  rgb(243, 207, 108);
+  border: 5px solid  rgb(190, 41, 183);
 
 }
 
 .startbutton:hover {
-  color: #D9C2C2;
   cursor: pointer;
+  border: 5px solid #3847ce;
 }
 
 .healthBar {
-  /*  */
+  overflow: hidden;
+  position: relative;
+  bottom: 0;
+  background-color: #af4feb;
+  height: 4rem;
+}
+
+.healthBar a {
+  float: left;
+  text-align: center;
+  display: block;
+  color: white;
+  padding: .5em 1.5em;
+  text-decoration: none;
+  font-size: 1.5em;
 }
 
 .bird {
@@ -108,10 +127,6 @@ h2 {
   background-size: contain;
   background-repeat: no-repeat;
   max-width:50%;
-  animation-name: none;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
 }
 
 .nest { /* added from nest.css */
@@ -215,18 +230,6 @@ h2 {
   }
   100% {
       right: 25%;
-  }
-}
-
-@keyframes birdHit {
-  0% {
-    background-image: url("../img/bird_flap.gif");
-  }
-  50% {
-    background-image: url("../img/bird_flapinv.gif");
-  }
-  100%{
-    background-image: url("../img/bird_flap.gif");
   }
 }
 
