@@ -6,8 +6,12 @@ body {
   height: 100%;
 }
 
-h1 {
-  font-size: 2em;
+header {
+  margin-left: 50px;
+  font-size: 4rem;
+  font-family: 'Raleway', sans-serif;
+  display: inline-block;
+  position: absolute;
 }
 
 h2 {
@@ -15,47 +19,9 @@ h2 {
   font-size: 200%;
 }
 
-.rockSmash {
-  background-image: url("../img/asteroid_break.gif");
-  position: absolute;
-  height: 80px;
-  width: 80px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 1;
-}
-/*
-.birdHit {
-  z-index: 100;
-  background-image: url("../img/bird_flapinj.gif");
-  height: 11rem;
-  width: 8rem;
-  position: absolute;
-  background-size: contain;
-  background-repeat: no-repeat;
-  max-width:50%;
-}*/
-
-.logo {
-  position: relative;
-  left: 50px;
-  top: -5px;
-  width: 75px;
-  height: 75px;
-  display: inline;
-  float: left;
-}
-
-.center-text{
-  position: relative;
-  left: -25px;
-  width: 100%;
-  text-align: center;
-}
-
 .navbar{
   font-family: 'ZCOOL QingKe HuangYou', cursive;
-  font-size: 20px;
+  font-size: 1.5rem;
   list-style-type: none;
   margin: 0px -10px;
   padding: 0;
@@ -76,6 +42,10 @@ h2 {
   text-align: center;
   padding: 12px 16px;
   text-decoration: none;
+}
+
+.navbar li:first-child{
+  margin-left: 1.5rem;
 }
 
 .navbar li:last-child {
@@ -121,7 +91,7 @@ h2 {
 .startbutton:hover {
   cursor: pointer;
   color: #D9C2C2;
-
+  cursor: pointer;
 }
 
 .bird {
@@ -203,6 +173,16 @@ h2 {
   animation-fill-mode: forwards;
 }
 
+.rockSmash {
+  background-image: url("../img/asteroid_break.gif");
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
 @keyframes scrollBg {
   100%{
     background-position: -6000px;
@@ -244,4 +224,5 @@ h2 {
     background-image: url("../img/bird_flap.gif");
   }
 }
+
 
