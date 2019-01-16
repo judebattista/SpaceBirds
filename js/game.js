@@ -15,8 +15,7 @@ var baseFontSize = $("body").css("font-size");
 /*  gameState object keeps information about the current game for 
     other functions to reference, such as how many asteroids to 
     generate, when to display the nest or if other objects are active*/
-var gameState =
-{
+var gameState = {
     level: 5,
     timer: 0, /*loop iterations*/
     active: false,
@@ -58,7 +57,13 @@ function gamescreen(buttontext, splashtext) {
     $button.attr("id", "startbutton");
     $button.attr("class", "startbutton");
     $button.html(buttontext);
+    kd.ENTER.down = function (){
+        window.setTimeout(function () {
+            document.getElementById("startbutton").click();
+        }, 300);
+    }
     $button.on("click", function () {
+        $button.css("border","5px solid #3847ce");
         gameReset();
         $button.parent().css("display", "none");
         gameRun();
@@ -294,18 +299,12 @@ function overlapRadial(x1, y1, x2, y2, radius1, radius2) {
     return distance < sumRad;
 }
 
-
 function hitBird(damage) {
     bird.healthCurrent -= damage;
-    /*var $bird = $("#bird");
-    $bird.css('background-image', 'url("/img/bird_flapinj.gif");');
-    window.setTimeout(function () {
-        $bird.css('background-image', 'url("/img/bird_flap.gif");');
-    }, 500);*/
     document.getElementById("bird").style.backgroundImage = 'url("img/bird_flapinj.gif")';
     window.setTimeout(function () {
         document.getElementById("bird").style.backgroundImage = 'url("img/bird_flap.gif")';
-    }, 300);
+    }, 400);
 }
 
 

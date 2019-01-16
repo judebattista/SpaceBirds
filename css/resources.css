@@ -6,16 +6,12 @@ body {
   height: 100%;
 }
 
-.center-text{
-  position: relative;
-  left: -25px;
-  width: 100%;
-  text-align: center;
-}
-
-h1 {
-  font-family: 'Lobster', cursive;
-  font-size: 48px;
+header {
+  margin-left: 50px;
+  font-size: 4rem;
+  font-family: 'Raleway', sans-serif;
+  display: inline-block;
+  position: absolute;
 }
 
 h2 {
@@ -28,40 +24,9 @@ p {
   font-size: 1em;
 }
 
-.logo {
-  position: relative;
-  left: 30px;
-  top: -5px;
-  width: 75px;
-  height: 75px;
-  display: inline;
-  float: left;
-}
-
-ul.card {
-  margin: 30px 150px;
-  list-style-type: none;
-}
-
-li.card {
-  background-color:#3E72F0;
-  margin: 30px 10px;
-  display: inline-block;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  text-align: center;
-  color: rgb(255, 255, 255);
-}
-
-.desc {
-  padding: 5px 50px;
-  background-color: white;
-  width: 250px;
-  color: black;
-}
-
 .navbar{
   font-family: 'ZCOOL QingKe HuangYou', cursive;
-  font-size: 20px;
+  font-size: 1.5rem;
   list-style-type: none;
   margin: 0px -10px;
   padding: 0;
@@ -74,7 +39,6 @@ li.card {
 .navbar li{
   float: left;
   border-right:3px solid rgb(255, 255, 255);
-
 }
 
 .navbar li a{
@@ -83,6 +47,10 @@ li.card {
   text-align: center;
   padding: 12px 16px;
   text-decoration: none;
+}
+
+.navbar li:first-child{
+  margin-left: 1.5rem;
 }
 
 .navbar li:last-child {
@@ -95,4 +63,29 @@ li.card {
 
 .active {
   background-color: #9740F9;
+}
+
+ul.card {
+  margin: 30px 150px;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+li.card {
+  background-color:#3E72F0;
+  margin: 1.5rem .8rem;
+  display: inline-block;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.desc {
+  padding: 5px 50px;
+  background-color: white;
+  width: 250px;
+  color: black;
 }

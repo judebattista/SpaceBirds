@@ -10,8 +10,14 @@
 sources: 
 https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-move-an-element-using-left-right-up-and-down-arrow-keys
 https://jeremyckahn.github.io/keydrown/
-
 */
+
+/*'ENTER': 13, 
+  'W': 87,  
+  'A': 65,
+  'S': 83,
+  'D': 68,
+  'SPACE': 32,*/
 var moveDist = 9;
 
 kd.DOWN.down = function () {
