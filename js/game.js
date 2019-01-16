@@ -193,7 +193,7 @@ function generateAsteroids() {
     }
     */
     //every half second, check to see if we should generate asteroids
-    var target = gameState.level / 100;
+    var target = 0;//gameState.level / 20;
     var $rockMom = $("#gameBox");
     var portHeight = $rockMom.height();
     var portTop = $rockMom.position().top;
