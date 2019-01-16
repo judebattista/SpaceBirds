@@ -27,14 +27,16 @@ kd.DOWN.down = function () {
     var birdBottom = birdTop + birdHeight;
 
     var $gameBox = $("#gameBox");
+    var $gameBox = $("body");
     var gameBoxTop = $gameBox.position().top;
     var gameBoxHeight = $gameBox.height();
     var gameBoxBottom = gameBoxTop + gameBoxHeight;
     var distance = gameBoxBottom - birdBottom;
 
     if (distance < moveDist) {
+        console.log("Bird top: " + birdTop + " Bird height: " + birdHeight + " Bird bottom: " + birdBottom + " Port top: " + gameBoxTop + " Port height: " + gameBoxHeight + " Port bottom " + gameBoxBottom + " Distance: " + distance);
         $(".bird").finish().animate({
-            top: "+=" + distance
+            top: gameBoxBottom - birdHeight
         });
     }
     else {
