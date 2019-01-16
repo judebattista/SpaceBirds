@@ -58,7 +58,6 @@ h2 {
 
 .active {
   background-color: #af4feb;
-  color: #962ac9;
 }
 
 .splashscreen {
@@ -72,7 +71,7 @@ h2 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .splashtext {
@@ -87,7 +86,7 @@ h2 {
   font-size: 1.5rem;
   padding: 1rem 3rem;
   background-color: #F9519A;
-  border: 5px solid #3E72F0;
+  border: 5px solid  rgb(243, 207, 108);
 
 }
 
