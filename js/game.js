@@ -15,8 +15,7 @@ var baseFontSize = $("body").css("font-size");
 /*  gameState object keeps information about the current game for 
     other functions to reference, such as how many asteroids to 
     generate, when to display the nest or if other objects are active*/
-var gameState =
-{
+var gameState = {
     level: 5,
     timer: 0, /*loop iterations*/
     active: false,
