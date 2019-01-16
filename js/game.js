@@ -174,6 +174,7 @@ function generateNest() {
 /*  Creates asteroid divs and assigns them css values and attributes.
     Also creates numbered Ids for them and gives them a speed value */
 function generateAsteroids() {
+    /*
     if (gameState.timer % 600 === 0) {
         var numRocks = gameState.level;
         var $rockMom = $("#gameBox");
@@ -188,6 +189,31 @@ function generateAsteroids() {
             $rock.css("top", ndx * rockVerticalGap + portTop);
             $rock.css("animation-duration", Math.random() * 5 + 1 + "s");
             $rockMom.append($rock);
+        }
+    }
+    */
+    //every half second, check to see if we should generate asteroids
+    var target = gameState.level / 100;
+    var $rockMom = $("#gameBox");
+    var portHeight = $rockMom.height();
+    var portTop = $rockMom.position().top;
+    if (gameState.timer % 32 === 0) {
+        //Roll to see if we successfully generate an asteroid
+        //Initially, the percentage chance is just ten times the level
+        var success = Math.random() <= target;
+        var ndx = 0;
+        while (success) {
+            //Create an asteroid
+            var $rock = $("<div>");
+            $rock.attr("id", "rock" + ndx);
+            $rock.attr("class", "rock");
+            var rockTopOffset = Math.random() * portHeight;
+            $rock.css("top", portTop + rockTopOffset);
+            $rock.css("animation-duration", Math.random() * 5 + 1 + "s");
+            $rockMom.append($rock);
+            ndx++;
+            //reroll for another asteroid
+            success = Math.random() <= target;
         }
     }
 }
