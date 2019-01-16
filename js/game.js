@@ -57,6 +57,13 @@ function gamescreen(buttontext, splashtext) {
     $button.attr("id", "startbutton");
     $button.attr("class", "startbutton");
     $button.html(buttontext);
+    kd.ENTER.down = function (){
+        $button.css("border","5px solid #8b2fc5");
+        $button.css("color","#D9C2C2;");
+        window.setTimeout(function () {
+            document.getElementById("startbutton").click();
+        }, 300);
+    }
     $button.on("click", function () {
         gameReset();
         $button.parent().css("display", "none");

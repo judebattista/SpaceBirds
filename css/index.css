@@ -58,6 +58,7 @@ h2 {
 
 .active {
   background-color: #af4feb;
+  color: #962ac9;
 }
 
 .splashscreen {
@@ -80,19 +81,23 @@ h2 {
 
 .startbutton {
   font-family: 'ZCOOL QingKe HuangYou', cursive;
-  color: #270986;
+  color: #231161;
   border-radius: 1.5rem;
   text-align: center;
   font-size: 1.5rem;
-  padding: 30px 50px;
+  padding: 1rem 3rem;
   background-color: #F9519A;
+  border: 5px solid #3E72F0;
 
 }
 
 .startbutton:hover {
-  cursor: pointer;
   color: #D9C2C2;
   cursor: pointer;
+}
+
+.healthBar {
+  /*  */
 }
 
 .bird {
@@ -108,37 +113,6 @@ h2 {
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
-}
-
-.container{
-  overflow:hidden;
-  height:550px;
-  width:100%;
-  z-index: 0;
-}
-
-.sliding-background {
-  position: absolute;
-  background: url("../img/main_bg.png") repeat-x;
-  height:550px;
-  width:12000px;
-  animation-name: scrollBg;
-  animation-duration:600s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  z-index: -99;
-}
-
-.sliding-galaxies {
-  position: absolute;
-  background: url("../img/galaxy_layer.png") repeat-x;
-  height:550px;
-  width:6000px;
-  animation-name: scrollGalaxy;
-  animation-duration:600s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  z-index: -98;
 }
 
 .nest { /* added from nest.css */
@@ -182,6 +156,37 @@ h2 {
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 1;
+}
+
+.container{
+  overflow:hidden;
+  height:550px;
+  width:100%;
+  z-index: 0;
+}
+
+.sliding-background {
+  position: absolute;
+  background: url("../img/main_bg.png") repeat-x;
+  height:550px;
+  width:12000px;
+  animation-name: scrollBg;
+  animation-duration:600s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: -99;
+}
+
+.sliding-galaxies {
+  position: absolute;
+  background: url("../img/galaxy_layer.png") repeat-x;
+  height:550px;
+  width:6000px;
+  animation-name: scrollGalaxy;
+  animation-duration:600s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: -98;
 }
 
 @keyframes scrollBg {

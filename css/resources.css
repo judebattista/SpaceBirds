@@ -68,11 +68,15 @@ p {
 ul.card {
   margin: 30px 150px;
   list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 li.card {
   background-color:#3E72F0;
-  margin: 30px 10px;
+  margin: 1.5rem .8rem;
   display: inline-block;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   text-align: center;
