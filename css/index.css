@@ -100,6 +100,12 @@ h2 {
   border: 5px solid #3847ce;
 }
 
+.startbutton:focus {
+  cursor: pointer;
+  border: 5px solid #3847ce;
+  outline: none;
+}
+
 .healthBar {
   overflow: hidden;
   position: relative;

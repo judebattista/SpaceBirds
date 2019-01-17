@@ -40,6 +40,8 @@ var nest = { /* added from nest.js */
     active: 0,
 };
 
+var gameLoopInterval;
+
 /*  Displays the start splashscreen with game control instructions and a button to 
     start the game*/
 $(document).ready(
@@ -55,12 +57,14 @@ $(document).ready(
 function gamescreen(buttontext, splashtext) {
     var $button = $("<div>");
     $button.attr("id", "startbutton");
-    $button.attr("class", "startbutton");
+    $button.addClass("startbutton");
+    $button.attr("tabindex", "1");
     $button.html(buttontext);
     kd.ENTER.down = function (){
+        $("#startbutton").focus();
         window.setTimeout(function () {
             document.getElementById("startbutton").click();
-        }, 300);
+        }, 1000);
     }
     $button.on("click", function () {
         $button.css("border","5px solid #3847ce");
@@ -102,13 +106,13 @@ function gameReset() {
     }
     bird.healthCurrent = bird.healthMax;
     gameState.timer = 0;
+    clearInterval(gameLoopInterval);
 }
 
 /*  Sets up the bird(player) and background elements for the game.
     Starts the loop and checks to see if the bird and bg already
     exist (from retry/play again) before creating new ones*/
 function gameRun() {
-    var runLoop = setInterval(gameLoop, loopDelay);
     //make bird element
     var $birdMom = $("#gameBox");
     var $bird = $("#bird");
@@ -138,6 +142,7 @@ function gameRun() {
         $galaxyGraphics.appendTo($backgroundMom);
     }
     gameState.active = true;
+    gameLoopInterval = setInterval(gameLoop, loopDelay);
 }
 
 /*  Stops the game, calls gameReset() and displays the 'lose' splashscreen */
@@ -157,7 +162,6 @@ function gameLoop() {
         generateNest();
         destroyInactiveAsteroids();
         detectCollision();
-        updateBird();
         gameState.timer++;
     }
 }
@@ -197,6 +201,7 @@ function generateAsteroids() {
         }
     }
     */
+    ///*
     //every half second, check to see if we should generate asteroids
     var target = 0;//gameState.level / 20;
     var $rockMom = $("#gameBox");
@@ -221,6 +226,7 @@ function generateAsteroids() {
             success = Math.random() <= target;
         }
     }
+    //*/
 }
 
 /*  Checks for collisions every game loop. Checks all rocks
@@ -331,6 +337,7 @@ function hitBird(damage) {
     window.setTimeout(function () {
         document.getElementById("bird").style.backgroundImage = 'url("img/bird_flap.gif")';
     }, 400);
+    updateBird();
 }
 
 
